@@ -1,0 +1,30 @@
+- name: Install base packages 
+  ansible.builtins.dnf:
+    name: 
+      - alacritty
+      - blueman
+      - bluez
+      - dunst
+      - firefox
+      - grim
+      - keepassxc
+      - libreoffice
+      - neovim
+      - NetworkManager
+      - NetworkManager-tui
+      - openssh
+      - openssl
+      - pavucontrol
+      - river
+      - rofi-wayland
+      - cascadia-code-pl-fonts
+      - swaybg
+      - swayidle
+      - swaylock
+      - torbrowser-launcher 
+      - vlc
+      - waybar
+      - xorg-x11-server-Xwayland
+      - zsh
+    state: latest
+

@@ -1,0 +1,12 @@
+- hosts: localhost 
+  connection: local 
+  become: true
+
+  pre_tasks:
+    - name: Upgrade all packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+
+  tasks:
+    - include: tasks/packages.yml
