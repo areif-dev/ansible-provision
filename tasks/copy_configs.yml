@@ -12,3 +12,15 @@
     owner: aj
     group: aj
     mode: '0755'
+
+- name: Make Rofi config script executable 
+  ansible.builtin.file:
+    path: /home/aj/.config/rofi/make-rofi-config.sh
+    owner: aj
+    group: aj
+    mode: '0755'
+
+- name: Run make-rofi-config script 
+  ansible.builtin.shell: /home/aj/.config/rofi/make-rofi-config.sh
+  args:
+    chdir: /home/aj/.config/rofi
