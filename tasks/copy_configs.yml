@@ -13,3 +13,11 @@
     owner: aj
     group: aj
     mode: '0755'
+
+- name: Copy Dunst Config 
+  copy:
+    src: files/dunst 
+    dest: /home/aj/.config/
+    owner: aj
+    group: aj
+    mode: '0755'
