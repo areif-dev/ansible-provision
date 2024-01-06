@@ -21,6 +21,6 @@
     mode: '0755'
 
 - name: Run make-rofi-config script 
-  ansible.builtin.shell: ./files/.config/config_scripts/make-rofi-config.sh
+  ansible.builtin.shell: /home/aj/.config/config_scripts/make-rofi-config.sh
   args:
-    chdir: /home/aj/.config/
+    chdir: /home/aj/.config/config_scripts/
