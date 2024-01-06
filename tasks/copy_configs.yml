@@ -1,0 +1,7 @@
+- name: Copy Alacritty Config 
+  copy:
+    src: files/alacritty.yml
+    dest: /home/aj/.config/alacritty.yml
+    owner: aj
+    group: aj
+    mode: '0644'
