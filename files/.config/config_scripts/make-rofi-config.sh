@@ -22,12 +22,12 @@ scale=$(echo "scale=0; $dpi / 100" | bc)
 rofi_height_px=$(printf "%.0f" $(echo "$display_height_px * 0.65 / $scale" | bc))
 rofi_width_px=$(printf "%.0f" $(echo "$display_height_px * 0.75 / $scale" | bc))
 
-echo $display_size 
-echo $display_height_px 
-echo $dpi 
-echo $scale 
-echo $rofi_height_px 
-echo $rofi_width_px 
+echo $display_size > ./output.txt
+echo $display_height_px >> ./output.txt
+echo $dpi >> ./output.txt
+echo $scale >> ./output.txt
+echo $rofi_height_px >> ./output.txt
+echo $rofi_width_px >> ./output.txt
 
 cp $config_dir/rofi/config.rasi.bak $config_dir/rofi/config.rasi
 
