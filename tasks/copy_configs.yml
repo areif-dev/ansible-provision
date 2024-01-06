@@ -6,16 +6,23 @@
     group: aj
     mode: '0644'
 
-- name: Make River config executable 
+- name: Set River init file to executable
   ansible.builtin.file:
     path: /home/aj/.config/river/init 
     owner: aj
     group: aj
     mode: '0755'
 
-- name: Make config scripts executable
+- name: Set make-rofi-config.sh to executable
   ansible.builtin.file:
-    path: /home/aj/.config/config_scripts
+    path: /home/aj/.config/config_scripts/make-rofi-config.sh
+    owner: aj
+    group: aj
+    mode: '0755'
+
+- name: Set vars.sh to executable 
+  ansible.builtin.file:
+    path: /home/aj/.config/config_scripts/vars.sh
     owner: aj
     group: aj
     mode: '0755'
