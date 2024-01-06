@@ -10,3 +10,8 @@
     owner: root
     group: root
     mode: 0440
+
+- name: Create aj user
+  user:
+    name: aj
+    shell: /usr/bin/zsh
