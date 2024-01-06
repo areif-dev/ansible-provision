@@ -24,6 +24,7 @@
       - torbrowser-launcher 
       - vlc
       - waybar
+      - wlr-randr
       - xorg-x11-server-Xwayland
       - zsh
     state: latest
