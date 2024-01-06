@@ -8,6 +8,14 @@
         name: "*"
         state: latest
 
+    - name: Create config dir
+      ansible.builtin.file:
+        path: /home/aj/.config
+        state: directory
+        mode: '0755'
+        owner: aj
+        group: aj 
+
   tasks:
     - include_tasks: tasks/packages.yml
     - include_tasks: tasks/users.yml 
