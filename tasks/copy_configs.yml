@@ -4,5 +4,5 @@
     dest: /home/aj/
     owner: aj
     group: aj
-    mode: '0755'
+    mode: '0644'
 
