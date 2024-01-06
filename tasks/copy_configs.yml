@@ -15,7 +15,7 @@
 
 - name: Make config scripts executable
   ansible.builtin.file:
-    path: /home/aj/.config/config_scripts/
+    path: /home/aj/.config/config_scripts
     owner: aj
     group: aj
     mode: '0755'
