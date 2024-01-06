@@ -5,3 +5,11 @@
     owner: aj
     group: aj
     mode: '0644'
+
+- name: Copy River Config
+  copy:
+    src: files/river
+    dest: /home/aj/.config/
+    owner: aj
+    group: aj
+    mode: '0755'
