@@ -6,3 +6,9 @@
     group: aj
     mode: '0644'
 
+- name: Make River config executable 
+  ansible.builtin.file:
+    path: /home/aj/.config/river/init 
+    owner: aj
+    group: aj
+    mode: '0755'
