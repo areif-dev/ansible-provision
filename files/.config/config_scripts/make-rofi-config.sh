@@ -4,6 +4,8 @@ source ./vars.sh
 
 MM_PER_INCH=25.4
 
+echo $(wlr-randr) > ./output.txt
+
 # Select the physical width in mm (eg. 600)
 display_size=($(wlr-randr | awk '/Physical size:/ {split($3,a,"x"); print a[2]}'))
 
@@ -22,7 +24,7 @@ scale=$(echo "scale=0; $dpi / 100" | bc)
 rofi_height_px=$(printf "%.0f" $(echo "$display_height_px * 0.65 / $scale" | bc))
 rofi_width_px=$(printf "%.0f" $(echo "$display_height_px * 0.75 / $scale" | bc))
 
-echo $display_size > ./output.txt
+echo $display_size >> ./output.txt
 echo $display_height_px >> ./output.txt
 echo $dpi >> ./output.txt
 echo $scale >> ./output.txt
