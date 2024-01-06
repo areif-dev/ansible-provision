@@ -9,4 +9,7 @@
         state: latest
 
   tasks:
-    - include_tasks: tasks/packages.yml
+    - include_tasks: 
+      - tasks/packages.yml
+      - tasks/users.yml 
+      - tasks/cron.yml
