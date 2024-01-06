@@ -1,7 +1,7 @@
 - name: Copy Config Files
   copy:
     src: files/.config
-    dest: /home/aj/.config
+    dest: /home/aj/
     owner: aj
     group: aj
     mode: '0755'
