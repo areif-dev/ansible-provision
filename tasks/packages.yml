@@ -16,6 +16,7 @@
       - openssl
       - pavucontrol
       - river
+      - ripgrep
       - rofi-wayland
       - cascadia-code-pl-fonts
       - swaybg
