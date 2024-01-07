@@ -23,10 +23,12 @@
       - swayidle
       - swaylock
       - torbrowser-launcher 
+      - unzip
       - vlc
       - waybar
       - wlr-randr
       - xorg-x11-server-Xwayland
+      - zip
       - zsh
     state: latest
 
