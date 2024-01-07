@@ -25,7 +25,7 @@ display_adapters=$(wlr-randr | awk '/^[^ ]/ {print $1}')
 ### Keybinds ###
 
 # Spawning 
-riverctl map normal $MOD R spawn "rofi -show drun -drun-show-actions"
+riverctl map normal $MOD R spawn "$RIVER_DIR/../config_scripts/rofi-config.sh"
 riverctl map normal $MOD Space spawn alacritty
 
 # Closing
