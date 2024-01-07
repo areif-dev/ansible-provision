@@ -13,3 +13,13 @@
     - include_tasks: tasks/users.yml 
     - include_tasks: tasks/cron.yml
     - include_tasks: tasks/copy_configs.yml
+
+  post_tasks:
+    - name: Copy Zshrc
+      ansible.builtin.copy:
+        src: files/.zshrc 
+        dest: /home/aj/.zshrc
+        owner: aj
+        group: aj
+        mode: u=rw,g=r,o=r
+
