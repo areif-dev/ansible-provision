@@ -1,9 +1,9 @@
 #!/bin/bash 
 
-source ./vars.sh
+rofi_dir=$HOME/.config/rofi
+rofi_config="$rofi_dir/config.rasi"
 
-rofi_config="$config_dir/rofi/config.rasi"
-if [ ! -f "$rofi_config" ] || grep -q "window_width" "$rofi_config" || grep -q "window_height"; then
+if [ ! -f "$rofi_config" ] || grep -q "window_width" "$rofi_config" || grep -q "window_height" "$rofi_config"; then
 
     MM_PER_INCH=25.4
 
@@ -25,9 +25,10 @@ if [ ! -f "$rofi_config" ] || grep -q "window_width" "$rofi_config" || grep -q "
     rofi_height_px=$(printf "%.0f" $(echo "$display_height_px * 0.65 / $scale" | bc))
     rofi_width_px=$(printf "%.0f" $(echo "$display_height_px * 0.75 / $scale" | bc))
 
-    cp $config_dir/rofi/config.rasi.bak $config_dir/rofi/config.rasi
+    cp $rofi_dir/config.rasi.bak $rofi_dir/config.rasi
 
-    sed -i "s/window_width/width: ${rofi_width_px}px;/" $config_dir/rofi/config.rasi
-    sed -i "s/window_height/height: ${rofi_height_px}px;/" $config_dir/rofi/config.rasi
+    sed -i "s/window_width/width: ${rofi_width_px}px;/" $rofi_config
+    sed -i "s/window_height/height: ${rofi_height_px}px;/" $rofi_config
+fi
 
 exec rofi -show drun -drun-show-actions
