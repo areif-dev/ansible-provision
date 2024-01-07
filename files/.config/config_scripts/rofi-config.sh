@@ -3,7 +3,7 @@
 rofi_dir=$HOME/.config/rofi
 rofi_config="$rofi_dir/config.rasi"
 
-if [ ! -f "$rofi_config" ] || grep -q "window_width" "$rofi_config" || grep -q "window_height" "$rofi_config"; then
+if [ ! -f "$rofi_config" ] || grep -q "window_width" "$rofi_config" || grep -q "window_height" "$rofi_config" || grep -q "width: 0px" "$rofi_config" || grep -q "height: 0px" "$rofi_config"; then
 
     MM_PER_INCH=25.4
 
