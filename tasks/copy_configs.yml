@@ -19,3 +19,8 @@
     owner: aj
     group: aj
     mode: '0755'
+
+- name: Install Oh-My-Zsh 
+  ansible.builtin.shell:
+    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
