@@ -33,7 +33,11 @@
 - name: Install Oh-My-Zsh 
   ansible.builtin.shell:
     cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  become: true
+  become_user: aj
 
 - name: Install Zsh Autosuggestions 
   ansible.builtin.shell:
     cmd: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  become: true
+  become_user: aj
