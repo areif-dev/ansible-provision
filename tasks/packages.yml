@@ -35,7 +35,7 @@
 - name: Install Oh-My-Zsh 
   ansible.builtin.shell:
     cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    creates: /home/aj/.oh-my-zsh
+    creates: /home/aj/.oh-my-zsh/oh-my-zsh.sh
   become: true
   become_user: aj
 
