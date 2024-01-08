@@ -20,3 +20,17 @@
     group: aj
     mode: '0755'
 
+- name: Set gtk.sh file to executable
+  ansible.builtin.file:
+    path: /home/aj/.config/config_scripts/gtk.sh
+    owner: aj
+    group: aj
+    mode: '0755'
+
+- name: Run gtk.sh to install Catppuccin GTK theme 
+  ansible.builtin.shell: /home/aj/.config/config_scripts/gtk.sh
+  args:
+    creates: /home/aj/.config/gtk-3.0
+  become: true
+  become_user: aj
+
