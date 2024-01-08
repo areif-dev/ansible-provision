@@ -40,8 +40,9 @@
   become_user: aj
 
 - name: Install Zsh Autosuggestions 
-  ansible.builtin.shell:
-    cmd: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  args: 
+    creates: /home/aj/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   become: true
   become_user: aj
 
