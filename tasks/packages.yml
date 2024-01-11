@@ -8,6 +8,7 @@
       - firefox
       - grim
       - keepassxc
+      - ledger
       - libreoffice
       - neovim
       - NetworkManager
