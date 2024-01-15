@@ -4,5 +4,5 @@
 # make any necessary and appropriate changes to this file to fit your use case, 
 # then rename the file vars.yml. 
 
-primary_user: user
-shell: /bin/bash
+primary_user: "user"
+shell: "/bin/bash"
