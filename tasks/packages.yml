@@ -47,15 +47,3 @@
     creates: /home/aj/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   become: true
   become_user: aj
-
-- name: Install NVM 
-  ansible.builtin.shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-  args: 
-    creates: /home/aj/.nvm
-  become: true
-  become_user: aj
-
-- name: Install Node.js
-  ansible.builtin.shell: export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && nvm install node # This loads nvm bash_completion
-  become: true
-  become_user: aj

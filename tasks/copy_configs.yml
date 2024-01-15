@@ -34,3 +34,9 @@
   become: true
   become_user: aj
 
+- name: Run node_config.sh to install NVM and Node.JS 
+  ansible.builtin.shell: /home/aj/.config/config_scripts/node_config.sh 
+  args:
+    creates: /home/aj/.nvm
+  become: true
+  become_user: aj
