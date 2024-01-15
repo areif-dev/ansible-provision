@@ -48,6 +48,3 @@
   become: true
   become_user: aj
 
-- name: Install FreeTube 
-  ansible.builtin.shell: curl https://github.com/FreeTubeApp/FreeTube/releases/download/v0.19.1-beta/freetube_0.19.1_amd64.rpm && dnf install freetube_0.19.1_amd64.rpm 
-  become: true
