@@ -1,0 +1,7 @@
+--- 
+
+# This is an example of the vars.yml file. Before executing the playbook, please 
+# make any necessary and appropriate changes to this file to fit your use case, 
+# then rename the file vars.yml. 
+
+primary_user: user
