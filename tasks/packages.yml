@@ -1,3 +1,6 @@
+vars_files: 
+  - vars.yml
+
 - name: Install base packages 
   ansible.builtin.dnf:
     name: 
