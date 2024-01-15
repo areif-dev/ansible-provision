@@ -8,7 +8,7 @@
 
 - name: Set River init file to executable
   ansible.builtin.file:
-    path: "/home/{{ primary_user }}/.config/river/init "
+    path: "/home/{{ primary_user }}/.config/river/init"
     owner: "{{ primary_user }}"
     group: "{{ primary_user }}"
     mode: '0755'
@@ -42,7 +42,7 @@
   become_user: "{{ primary_user }}"
 
 - name: Run node_config.sh to install NVM and Node.JS 
-  ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/node_config.sh "
+  ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/node_config.sh"
   args:
     creates: "/home/{{ primary_user }}/.nvm"
   become: true
