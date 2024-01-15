@@ -26,6 +26,13 @@
     owner: aj
     group: aj
     mode: '0755'
+      
+- name: Set node_config.sh file to executable
+  ansible.builtin.file:
+    path: /home/aj/.config/config_scripts/node_config.sh
+    owner: aj
+    group: aj
+    mode: '0755'
 
 - name: Run gtk.sh to install Catppuccin GTK theme 
   ansible.builtin.shell: /home/aj/.config/config_scripts/gtk.sh
