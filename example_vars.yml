@@ -6,3 +6,4 @@
 
 primary_user: "user"
 shell: "/bin/bash"
+hostname: "localhost"
