@@ -56,6 +56,6 @@
   become_user: aj
 
 - name: Install Node.js
-  ansible.builtin.shell: nvm install node
+  ansible.builtin.shell: export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && nvm install node # This loads nvm bash_completion
   become: true
   become_user: aj
