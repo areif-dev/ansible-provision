@@ -37,14 +37,14 @@
 - name: Install Oh-My-Zsh 
   ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   args:
-    creates: /home/aj/.oh-my-zsh/oh-my-zsh.sh
+    creates: "/home/{{ primary_user }}/.oh-my-zsh/oh-my-zsh.sh"
   become: true
-  become_user: aj
+  become_user: "{{ primary_user }}"
 
 - name: Install Zsh Autosuggestions 
   ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   args: 
-    creates: /home/aj/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    creates: "/home/{{ primary_user }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
   become: true
-  become_user: aj
+  become_user: "{{ primary_user }}"
 

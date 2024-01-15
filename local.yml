@@ -1,5 +1,7 @@
 - hosts: localhost 
   connection: local 
+  vars_files:
+    - vars.yml
   become: true
 
   pre_tasks:
@@ -18,8 +20,8 @@
     - name: Copy Zshrc
       ansible.builtin.copy:
         src: files/.zshrc 
-        dest: /home/aj/.zshrc
-        owner: aj
-        group: aj
+        dest: "/home/{{ primary_user }}/.zshrc"
+        owner: "{{ primary_user }}"
+        group: "{{ primary_user }}"
         mode: u=rw,g=r,o=r
 

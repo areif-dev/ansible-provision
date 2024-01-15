@@ -1,49 +1,49 @@
 - name: Copy Config Files
   copy:
     src: files/.config
-    dest: /home/aj/
-    owner: aj
-    group: aj
+    dest: "/home/{{ primary_user }}/"
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
     mode: '0644'
 
 - name: Set River init file to executable
   ansible.builtin.file:
-    path: /home/aj/.config/river/init 
-    owner: aj
-    group: aj
+    path: "/home/{{ primary_user }}/.config/river/init "
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
     mode: '0755'
 
 - name: Set Rofi config script to executable 
   ansible.builtin.file:
-    path: /home/aj/.config/config_scripts/rofi-config.sh
-    owner: aj
-    group: aj
+    path: "/home/{{ primary_user }}/.config/config_scripts/rofi-config.sh"
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
     mode: '0755'
 
 - name: Set gtk.sh file to executable
   ansible.builtin.file:
-    path: /home/aj/.config/config_scripts/gtk.sh
-    owner: aj
-    group: aj
+    path: "/home/{{ primary_user }}/.config/config_scripts/gtk.sh"
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
     mode: '0755'
       
 - name: Set node_config.sh file to executable
   ansible.builtin.file:
-    path: /home/aj/.config/config_scripts/node_config.sh
-    owner: aj
-    group: aj
+    path: "/home/{{ primary_user }}/.config/config_scripts/node_config.sh"
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
     mode: '0755'
 
 - name: Run gtk.sh to install Catppuccin GTK theme 
-  ansible.builtin.shell: /home/aj/.config/config_scripts/gtk.sh
+  ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/gtk.sh"
   args:
-    creates: /home/aj/.config/gtk-3.0
+    creates: "/home/{{ primary_user }}/.config/gtk-3.0"
   become: true
-  become_user: aj
+  become_user: "{{ primary_user }}"
 
 - name: Run node_config.sh to install NVM and Node.JS 
-  ansible.builtin.shell: /home/aj/.config/config_scripts/node_config.sh 
+  ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/node_config.sh "
   args:
-    creates: /home/aj/.nvm
+    creates: "/home/{{ primary_user }}/.nvm"
   become: true
-  become_user: aj
+  become_user: "{{ primary_user }}"

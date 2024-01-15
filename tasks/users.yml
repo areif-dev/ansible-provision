@@ -11,7 +11,7 @@
     group: root
     mode: 0440
 
-- name: Create aj user
+- name: Create primary_user and assign preferred shell
   user:
-    name: aj
-    shell: /usr/bin/zsh
+    name: "{{ primary_user }}"
+    shell: "{{ shell }}"
