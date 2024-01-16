@@ -40,6 +40,7 @@
     creates: "/home/{{ primary_user }}/.oh-my-zsh/oh-my-zsh.sh"
   become: true
   become_user: "{{ primary_user }}"
+  when: shell == "/usr/bin/zsh"
 
 - name: Install Zsh Autosuggestions 
   ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -47,4 +48,5 @@
     creates: "/home/{{ primary_user }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
   become: true
   become_user: "{{ primary_user }}"
+  when: shell == "/usr/bin/zsh"
 
