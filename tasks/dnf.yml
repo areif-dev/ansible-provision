@@ -1,0 +1,19 @@
+---
+
+- name: Install dnf 
+  community.general.zypper:
+    name: 
+      - dnf
+      - libdnf-repo-config-zypp
+      - python3-dnf-plugin-snapper
+    state: latest 
+
+- name: Speed up dnf
+  ansible.builtin.ini_file:
+    path: /etc/dnf/dnf.conf  # Adjust the path if needed
+    section: main
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  loop:
+    - { option: 'max_parallel_downloads', value: '15' }
+    - { option: 'fastestmirror', value: 'True' }
