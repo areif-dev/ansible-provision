@@ -1,15 +1,16 @@
 - name: Install base packages 
-  community.general.zypper:
+  ansible.builtin.dnf:
     name: 
       - alacritty
       - blueman
       - bluez
       - dunst
-      - firefox
       - grim
       - keepassxc
       - ledger
       - libreoffice
+      - MozillaFirefox
+      - MozillaFirefox-branding-upstream
       - neovim
       - NetworkManager
       - NetworkManager-tui
@@ -20,7 +21,7 @@
       - river
       - ripgrep
       - rofi-wayland
-      - cascadia-code-pl-fonts
+      - saja-cascadia-code-fonts
       - swaybg
       - swayidle
       - swaylock
@@ -29,7 +30,7 @@
       - vlc
       - waybar
       - wlr-randr
-      - xorg-x11-server-Xwayland
+      - xwayland
       - zip
       - zsh
     state: latest

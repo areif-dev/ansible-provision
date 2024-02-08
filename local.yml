@@ -6,13 +6,14 @@
   become: true
 
   pre_tasks:
-    - name: Distupgrade first
-      community.general.zypper:
+    - include_tasks: tasks/dnf.yml
+    - name: Upgrade first
+      ansible.builtin.dnf:
         name: "*"
-        state: dist-upgrade
-        allow_vendor_change: true
+        state: latest
 
   tasks:
+    - include_tasks: tasks/dnf.yml
     - include_tasks: tasks/packages.yml
     - include_tasks: tasks/users.yml 
     - include_tasks: tasks/copy_configs.yml
