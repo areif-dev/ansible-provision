@@ -62,3 +62,8 @@
   become_user: "{{ primary_user }}"
   when: '"zsh" in shell'
 
+- name: Install Tailscale 
+  ansible.builtin.shell: sh -c "$(curl -fsSL https://tailscale.com/install.sh)"
+  args:
+    creates: "/usr/bin/tailscale"
+
