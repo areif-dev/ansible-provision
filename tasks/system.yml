@@ -8,3 +8,6 @@
   ansible.builtin.file:
     state: absent
     path: /usr/share/applicatons/YaST2/
+      
+- name: UpdateDB 
+  ansible.builtin.shell: updatedb
