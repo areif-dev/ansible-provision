@@ -2,8 +2,6 @@
   ansible.builtin.dnf:
     name: 
       - alacritty
-      - blueman
-      - bluez
       - dunst
       - grim
       - keepassxc
@@ -34,6 +32,15 @@
       - zip
       - zsh
     state: latest
+    use_backend: dnf4
+
+- name: Remove unneeded packages 
+  ansible.builtin.dnf:
+    name:
+      - blueman
+      - bluez
+      - xdg-desktop-portal-gtk
+    state: absent
     use_backend: dnf4
 
 - name: Install Oh-My-Zsh 
