@@ -14,11 +14,13 @@
       - NetworkManager-tui
       - openssh
       - openssl
+      - plocate
       - papirus-icon-theme
       - pavucontrol
       - river
       - ripgrep
       - rofi-wayland
+      - rustup
       - saja-cascadia-code-fonts
       - swaybg
       - swayidle
