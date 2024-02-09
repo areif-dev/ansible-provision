@@ -11,6 +11,7 @@
       ansible.builtin.dnf:
         name: "*"
         state: latest
+        use_backend: dnf4
 
   tasks:
     - include_tasks: tasks/dnf.yml
