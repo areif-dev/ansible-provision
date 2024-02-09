@@ -4,12 +4,7 @@
   ansible.builtin.hostname: 
     name: "{{ hostname }}"
 
-      # - name: Speed up DNF
-      #   ansible.builtin.ini_file:
-      #     path: /etc/dnf/dnf.conf  # Adjust the path if needed
-      #     section: main
-      #     option: "{{ item.option }}"
-      #     value: "{{ item.value }}"
-      #   loop:
-      #     - { option: 'max_parallel_downloads', value: '15' }
-      #     - { option: 'fastestmirror', value: 'True' }
+- name: Remove YaST2 From App Menu 
+  ansible.builtin.file:
+    state: absent
+    path: /usr/share/applicatons/YaST2/
