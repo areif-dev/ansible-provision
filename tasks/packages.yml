@@ -6,7 +6,7 @@
       - grim
       - keepassxc
       - ledger
-      - libreoffice
+      - libreoffice-gtk3
       - MozillaFirefox
       - MozillaFirefox-branding-upstream
       - neovim
