@@ -28,6 +28,7 @@
       - vlc
       - waybar
       - wlr-randr
+      - xeyes
       - xwayland
       - zip
       - zsh
