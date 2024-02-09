@@ -67,3 +67,7 @@
   args:
     creates: "/usr/bin/tailscale"
 
+- name: Install river-bsp-layout 
+  ansible.builtin.shell: cargo install river-bsp-layout --locked
+  become: true 
+  become_user: "{{ primary_user }}"
