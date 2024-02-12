@@ -22,10 +22,9 @@
 
   post_tasks:
     - name: Copy Zshrc
-      ansible.builtin.copy:
+      ansible.builtin.file:
         src: files/.zshrc 
         dest: "/home/{{ primary_user }}/.zshrc"
         owner: "{{ primary_user }}"
         group: "{{ primary_user }}"
-        mode: u=rw,g=r,o=r
-
+        state: link
