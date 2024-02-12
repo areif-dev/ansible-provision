@@ -6,7 +6,9 @@
       - bluez
       - dunst
       - firefox
+      - gvfs-mtp
       - grim
+      - jmtpfs
       - keepassxc
       - ledger
       - libreoffice
@@ -24,6 +26,7 @@
       - swaybg
       - swayidle
       - swaylock
+      - thunar
       - torbrowser-launcher 
       - unzip
       - vlc
