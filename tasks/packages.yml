@@ -1,17 +1,16 @@
 - name: Install base packages 
-  ansible.builtin.dnf:
+  community.general.pacman:
     name: 
       - alacritty
+      - base-devel
       - dunst
+      - firefox
       - grim
       - keepassxc
       - ledger
-      - libreoffice-gtk3
-      - MozillaFirefox
-      - MozillaFirefox-branding-upstream
+      - libreoffice-fresh
       - neovim
-      - NetworkManager
-      - NetworkManager-tui
+      - networkmanager
       - openssh
       - openssl
       - plocate
@@ -19,9 +18,8 @@
       - pavucontrol
       - river
       - ripgrep
-      - rofi-wayland
       - rustup
-      - saja-cascadia-code-fonts
+      - otf-cascadia-code-fonts
       - swaybg
       - swayidle
       - swaylock
@@ -35,16 +33,14 @@
       - zip
       - zsh
     state: latest
-    use_backend: dnf4
 
 - name: Remove unneeded packages 
-  ansible.builtin.dnf:
+  community.general.pacman:
     name:
       - blueman
       - bluez
       - xdg-desktop-portal-gtk
     state: absent
-    use_backend: dnf4
 
 - name: Install Oh-My-Zsh 
   ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
