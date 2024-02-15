@@ -29,23 +29,9 @@
     group: "{{ primary_user }}"
     mode: '0755'
       
-- name: Set node_config.sh file to executable
-  ansible.builtin.file:
-    path: "/home/{{ primary_user }}/.config/config_scripts/node_config.sh"
-    owner: "{{ primary_user }}"
-    group: "{{ primary_user }}"
-    mode: '0755'
-
 - name: Run gtk.sh to install Catppuccin GTK theme 
   ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/gtk.sh"
   args:
     creates: "/home/{{ primary_user }}/.config/gtk-3.0"
-  become: true
-  become_user: "{{ primary_user }}"
-
-- name: Run node_config.sh to install NVM and Node.JS 
-  ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/node_config.sh"
-  args:
-    creates: "/home/{{ primary_user }}/.nvm"
   become: true
   become_user: "{{ primary_user }}"
