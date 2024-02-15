@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Create array of active display adapters (DP-1, HMDI-1, etc) by selecting the 
 # first word of each line in the output of wlr-randr that does not start with 
