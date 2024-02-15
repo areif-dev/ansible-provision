@@ -1,28 +1,40 @@
 ---
+
 - hosts: localhost 
   connection: local 
   vars_files:
     - vars.yml
   become: true
 
-  pre_tasks:
-    - name: Upgrade all packages
-      ansible.builtin.dnf:
-        name: "*"
-        state: latest
-
   tasks:
-    - include_tasks: tasks/packages.yml
-    - include_tasks: tasks/users.yml 
-    - include_tasks: tasks/copy_configs.yml
-    - include_tasks: tasks/system.yml
+    - name: Install Oh-My-Zsh 
+      ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      args:
+        creates: "/home/{{ primary_user }}/.oh-my-zsh/oh-my-zsh.sh"
+      become: true
+      become_user: "{{ primary_user }}"
+      when: shell == "/usr/bin/zsh"
 
-  post_tasks:
-    - name: Copy Zshrc
-      ansible.builtin.copy:
-        src: files/.zshrc 
-        dest: "/home/{{ primary_user }}/.zshrc"
+    - name: Link Config Files
+      ansible.builtin.file:
+        src: files/.config/*
+        dest: "/home/{{ primary_user }}/.config"
         owner: "{{ primary_user }}"
         group: "{{ primary_user }}"
-        mode: u=rw,g=r,o=r
+        state: link
+
+    - name: Link .zshrc 
+      ansible.builtin.file:
+        src: files/.zshrc 
+        dest: "/home/{{ primary_user }}/"
+        state: link 
+
+    - name: Change hostname 
+      ansible.builtin.hostname: 
+        name: "{{ hostname }}"
+
+    - name: Create primary_user and assign preferred shell
+      user:
+        name: "{{ primary_user }}"
+        shell: "{{ shell }}"
 
