@@ -17,16 +17,18 @@
 
     - name: Link Config Files
       ansible.builtin.file:
-        src: files/.config/*
-        dest: "/home/{{ primary_user }}/.config"
+        src: "{{ playbook_dir }}/files/.config"
+        dest: "/home/{{ primary_user}}/.config"
         owner: "{{ primary_user }}"
         group: "{{ primary_user }}"
         state: link
 
     - name: Link .zshrc 
       ansible.builtin.file:
-        src: files/.zshrc 
-        dest: "/home/{{ primary_user }}/"
+        src: "{{ playbook_dir }}/files/.zshrc"
+        dest: "/home/{{ primary_user }}/.zshrc"
+        owner: "{{ primary_user }}"
+        group: "{{ primary_user }}"
         state: link 
 
     - name: Change hostname 
