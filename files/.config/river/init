@@ -141,7 +141,7 @@ do
 done 
 
 # Set the wallpaper
-exec swaybg -i $HOME/.config/river/hexcore.png --mode fill &
+exec swaybg -i $RIVER_DIR/hexcore.png --mode fill &
 
 # Set a screen timeout
 exec swayidle -w \
