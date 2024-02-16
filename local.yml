@@ -40,3 +40,9 @@
         name: "{{ primary_user }}"
         shell: "{{ shell }}"
 
+    - name: Run gtk.sh to install Catppuccin GTK theme 
+      ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/gtk.sh"
+      args:
+        creates: "/home/{{ primary_user }}/.config/gtk-3.0"
+      become: true
+      become_user: "{{ primary_user }}"
