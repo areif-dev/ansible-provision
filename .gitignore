@@ -1,2 +1,4 @@
 vars.yml
 lazy-lock.json
+**/rofi/config.rasi
+**/pulse/
