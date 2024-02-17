@@ -15,6 +15,11 @@
       become_user: "{{ primary_user }}"
       when: shell == "/usr/bin/zsh"
 
+    - name: Move existing .config
+      ansible.builtin.command: "mv /home/{{ primary_user }}/.config /home/{{ primary_user }}/.config.pre-provision"
+      args: 
+        creates: "/home/{{ primary_user }}/.config.pre-provision/"
+
     - name: Link Config Files
       ansible.builtin.file:
         src: "{{ playbook_dir }}/files/.config"
@@ -22,6 +27,11 @@
         owner: "{{ primary_user }}"
         group: "{{ primary_user }}"
         state: link
+
+    - name: Move existing .zshrc 
+      ansible.builtin.command: "mv /home/{{ primary_user }}/.zshrc /home/{{ primary_user }}/.zshrc.pre-provision"
+      args: 
+        creates: "/home/{{ primary_user }}/.zshrc.pre-provision"
 
     - name: Link .zshrc 
       ansible.builtin.file:
