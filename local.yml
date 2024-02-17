@@ -56,3 +56,6 @@
         creates: "/home/{{ primary_user }}/.config/gtk-3.0"
       become: true
       become_user: "{{ primary_user }}"
+
+    - name: Run updatedb for plocate 
+      ansible.builtin.shell: updatedb
