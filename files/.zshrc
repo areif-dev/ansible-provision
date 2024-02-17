@@ -107,3 +107,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias la="ls -a"
 alias ll="ls -lah --color=auto"
+
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
