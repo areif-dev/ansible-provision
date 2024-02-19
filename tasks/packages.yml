@@ -1,29 +1,38 @@
 - name: Add tailscale repo 
   ansible.builtin.yum_repository:
-    name: tailscale 
-    description: Tailscale repo 
+    name: tailscale-stable
+    description: Tailscale stable
     async: true 
-    baseurl: https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    baseurl: https://pkgs.tailscale.com/stable/fedora/$basearch
     enabled: true 
     state: present 
     gpgcheck: true 
-    repo_gpgcheck: true
+    repo_gpgcheck: true 
+    gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
 
 - name: Install base packages 
   ansible.builtin.dnf:
-    name: 
+    name:
       - alacritty
-      - blueman
+      - ansible
       - bluez
+      - bluez-tools
       - cascadia-code-pl-fonts
+      - dbus-daemon
+      - dbus-tools
       - dunst
       - firefox
+      - gnome-keyring
+      - google-noto-emoji-fonts
       - gvfs-mtp
       - grim
+      - grimshot
       - jmtpfs
       - keepassxc
+      - kpcli
       - ledger
       - libreoffice
+      - lxpolkit
       - neovim
       - NetworkManager
       - NetworkManager-tui
@@ -31,19 +40,30 @@
       - openssl
       - papirus-icon-theme
       - pavucontrol
+      - pipewire
+      - playerctl
+      - polkit
+      - ranger
       - river
       - ripgrep
       - rofi-wayland
+      - rustup
       - swaybg
       - swayidle
       - swaylock
       - tailscale
       - thunar
-      - torbrowser-launcher 
+      - thunar-archive-plugin
+      - thunar-volman
+      - torbrowser-launcher
       - unzip
       - vlc
       - waybar
+      - wireplumber
+      - wl-clipboard
       - wlr-randr
+      - xdg-desktop-portal-wlr
+      - xdg-user-dirs
       - xorg-x11-server-Xwayland
       - zip
       - zsh
