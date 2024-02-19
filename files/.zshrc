@@ -76,10 +76,10 @@ ZSH_THEME="alanpeabody"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -108,7 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias la="ls -a"
 alias ll="ls -lah --color=auto"
-alias codium-wayland="codium --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
