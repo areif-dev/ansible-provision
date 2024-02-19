@@ -13,3 +13,9 @@
   loop:
     - { option: 'max_parallel_downloads', value: '15' }
     - { option: 'fastestmirror', value: 'True' }
+
+- name: Enable Tailscaled
+  ansible.builtin.systemd_service:
+    name: tailscaled
+    state: started
+    enabled: true
