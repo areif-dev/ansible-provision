@@ -1,38 +1,38 @@
-- name: Copy Config Files
-  copy:
-    src: files/.config
-    dest: "/home/{{ primary_user }}/"
-    owner: "{{ primary_user }}"
-    group: "{{ primary_user }}"
-    mode: '0644'
+--- 
 
-- name: Set River init file to executable
-  ansible.builtin.file:
-    path: "/home/{{ primary_user }}/.config/river/init"
-    owner: "{{ primary_user }}"
-    group: "{{ primary_user }}"
-    mode: '0755'
+- name: Check if .zshrc already exists
+  stat:
+    path: "/home/{{ primary_user }}/.zshrc"
+  register: result
 
-- name: Set Rofi config script to executable 
-  ansible.builtin.file:
-    path: "/home/{{ primary_user }}/.config/config_scripts/rofi-config.sh"
-    owner: "{{ primary_user }}"
-    group: "{{ primary_user }}"
-    mode: '0755'
+- name: Move existing .zshrc 
+  ansible.builtin.command: "mv /home/{{ primary_user }}/.zshrc /home/{{ primary_user }}/.zshrc.pre-provision"
+  when: result.stat.exists
 
-- name: Set gtk.sh file to executable
-  ansible.builtin.file:
-    path: "/home/{{ primary_user }}/.config/config_scripts/gtk.sh"
+- name: Link zshrc 
+  ansible.builtin.file: 
+    src: "{{ playbook_dir }}/files/.zshrc"
+    dest: "/home/{{ primary_user }}/.zshrc"
     owner: "{{ primary_user }}"
     group: "{{ primary_user }}"
-    mode: '0755'
-      
-- name: Set node_config.sh file to executable
-  ansible.builtin.file:
-    path: "/home/{{ primary_user }}/.config/config_scripts/node_config.sh"
+    state: link
+
+- name: Check if .config already exists
+  stat:
+    path: "/home/{{ primary_user }}/.config"
+  register: result
+
+- name: Move existing .config
+  ansible.builtin.command: "mv /home/{{ primary_user }}/.config /home/{{ primary_user }}/.config.pre-provision"
+  when: result.stat.exists
+
+- name: Link .config dir 
+  ansible.builtin.file: 
+    src: "{{ playbook_dir }}/files/.config"
+    dest: "/home/{{ primary_user }}/.config"
     owner: "{{ primary_user }}"
     group: "{{ primary_user }}"
-    mode: '0755'
+    state: link
 
 - name: Run gtk.sh to install Catppuccin GTK theme 
   ansible.builtin.shell: "/home/{{ primary_user }}/.config/config_scripts/gtk.sh"
