@@ -1,9 +1,21 @@
+- name: Add tailscale repo 
+  ansible.builtin.yum_repository:
+    name: tailscale 
+    description: Tailscale repo 
+    async: true 
+    baseurl: https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    enabled: true 
+    state: present 
+    gpgcheck: true 
+    repo_gpgcheck: true
+
 - name: Install base packages 
   ansible.builtin.dnf:
     name: 
       - alacritty
       - blueman
       - bluez
+      - cascadia-code-pl-fonts
       - dunst
       - firefox
       - gvfs-mtp
@@ -22,10 +34,10 @@
       - river
       - ripgrep
       - rofi-wayland
-      - cascadia-code-pl-fonts
       - swaybg
       - swayidle
       - swaylock
+      - tailscale
       - thunar
       - torbrowser-launcher 
       - unzip
