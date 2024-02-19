@@ -77,3 +77,7 @@
   become: true
   become_user: "{{ primary_user }}"
 
+- name: Run rustup-init
+  ansible.builtin.shell: rustup-init --default-host x86_64-unknown-linux-gnu --profile default --default-toolchain stable -y
+  become: true 
+  become_user: "{{ primary_user }}"
