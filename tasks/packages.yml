@@ -13,6 +13,7 @@
 - name: Install base packages 
   ansible.builtin.dnf:
     name:
+      - "@Development Tools"
       - alacritty
       - ansible
       - bluez
@@ -69,6 +70,10 @@
       - zsh
       - zsh-autosuggestions
     state: latest
+
+- name: Autoremove unneeded packages 
+  ansible.builtin.dnf: 
+    autoremove: true
 
 - name: Install Oh-My-Zsh 
   ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
