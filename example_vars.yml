@@ -5,5 +5,4 @@
 # then rename the file vars.yml. 
 
 primary_user: "user"
-shell: "/bin/bash"
 hostname: "localhost"
