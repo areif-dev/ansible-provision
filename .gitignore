@@ -1,1 +1,9 @@
 vars.yml
+lazy-lock.json
+**/rofi/config.rasi
+**/pulse/
+files/.config/Thunar/
+files/.config/gtk-2.0/
+files/.config/gtk-3.0/
+files/.config/gtk-4.0/
+files/.config/xfce4/
