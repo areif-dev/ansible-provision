@@ -10,6 +10,20 @@
     repo_gpgcheck: true 
     gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
 
+- name: Import RPM Fusion GPG keys
+  ansible.builtin.rpm_key:
+    key: "{{ item }}"
+  loop:
+    - "https://download1.rpmfusion.org/free/fedora/RPM-GPG-KEY-rpmfusion-free-fedora-2020"
+    - "https://download1.rpmfusion.org/nonfree/fedora/RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
+
+- name: Enable the RPM Fusion repository
+  ansible.builtin.dnf:
+    name: 
+      - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+      - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+
 - name: Install base packages 
   ansible.builtin.dnf:
     name:
