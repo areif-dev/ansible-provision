@@ -127,7 +127,7 @@ riverctl border-color-focused 0xb4befe
 riverctl border-color-unfocused 0x11111b
 
 # Set keyboard repeat rate
-riverctl set-repeat 50 600
+riverctl set-repeat 50 500
 
 riverctl focus-follows-cursor always
 
