@@ -37,6 +37,7 @@
       - dbus-tools
       - dunst
       - firefox
+      - gimp
       - gnome-keyring
       - google-noto-emoji-fonts
       - gvfs-mtp
@@ -62,6 +63,8 @@
       - river
       - ripgrep
       - rofi-wayland
+      - rpmdevtools
+      - rpmlint
       - rustup
       - swaybg
       - swayidle
