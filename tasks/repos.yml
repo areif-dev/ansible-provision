@@ -28,12 +28,12 @@
 
 - name: Enable river-bsp-layout copr repo 
   ansible.builtin.yum_repository:
-    name: areif-dev:river-bsp-layout 
+    name: copr:copr.fedorainfracloud.org:areif-dev:river-bsp-layout 
     description: Copr repo for river-bsp-layout owned by areif-dev 
     baseurl: https://download.copr.fedorainfracloud.org/results/areif-dev/river-bsp-layout/fedora-$releasever-$basearch/
     skip_if_unavailable: true 
     gpgcheck: true 
     gpgkey: https://download.copr.fedorainfracloud.org/results/areif-dev/river-bsp-layout/pubkey.gpg
-    repo_gpgcheck: true 
+    repo_gpgcheck: false
     enabled: true 
     async: true
