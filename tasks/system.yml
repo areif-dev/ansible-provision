@@ -19,3 +19,9 @@
     name: tailscaled
     state: started
     enabled: true
+
+- name: Create cron job to refresh repos regularly 
+  ansible.builtin.cron:
+    name: "makecache"
+    minute: "*/15"
+    job: dnf makecache

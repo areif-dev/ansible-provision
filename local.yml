@@ -5,13 +5,8 @@
     - vars.yml
   become: true
 
-  pre_tasks:
-    - name: Upgrade all packages
-      ansible.builtin.dnf:
-        name: "*"
-        state: latest
-
   tasks:
+    - include_tasks: tasks/repos.yml
     - include_tasks: tasks/packages.yml
     - include_tasks: tasks/users.yml 
     - include_tasks: tasks/copy_configs.yml
