@@ -59,6 +59,7 @@
       - pipewire
       - playerctl
       - polkit
+      - protonvpn-cli
       - ranger
       - river
       - ripgrep
