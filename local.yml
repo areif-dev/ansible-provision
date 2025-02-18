@@ -6,22 +6,21 @@
 
   tasks:
     - name: Install preferred shell
-      ansible.builtin.dnf: 
+      community.general.zypper: 
         name: "{{ preferred_shell }}"
         state: latest
+
+    - name: Get path to preferred shell 
+      ansible.builtin.shell: command -v "{{ preferred_shell }}"
+      register: shell_path
 
     - name: Create primary_user with preferred_shell
       user: 
         name: "{{ primary_user }}"
-        shell: "/usr/bin/env {{ preferred_shell }}"
-
-    - name: Speed up DNF
-      ansible.builtin.shell: |
-        sed -i 's/.*{{ item.option }}=.*//g' /etc/dnf/dnf.conf
-        echo '{{ item.option }}={{ item.value }}' | tee -a /etc/dnf/dnf.conf
-      loop:
-        - { option: "max_parallel_downloads", value: "{{ dnf_max_parallel_downloads }}" }
-        - { option: "fastestmirror", value: "{{ dnf_fastestmirror }}" }
+        shell: "{{ shell_path.stdout }}"
+        groups: 
+          - libvirt
+          - qemu
 
     - name: Install the nas system if requested
       include_tasks: systems/nas.yml
@@ -35,13 +34,15 @@
       include_tasks: systems/laptop.yml
       when: system_type == "laptop"
 
-    - name: Autoremove unneeded packages 
-      ansible.builtin.dnf: 
-        autoremove: true
-
     - name: Change hostname 
       ansible.builtin.hostname: 
         name: "{{ hostname }}"
+
+    - name: Enable chronyd 
+      ansible.builtin.systemd:
+        name: chronyd 
+        state: started 
+        enabled: true
 
     - name: Enable Tailscaled
       ansible.builtin.systemd_service:
@@ -54,6 +55,9 @@
         name: libvirtd 
         state: started 
         enabled: true 
+
+    - name: Make sure default libvirt net starts at boot
+      ansible.builtin.shell: virsh net-autostart default
 
           # - name: Enable plocate-updatedb 
           #   ansible.builtin.systemd_service: 

@@ -1,0 +1,124 @@
+- name: Add packman repo
+  community.general.zypper_repository:
+    name: packman 
+    repo: "https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/"
+    state: present
+    
+- name: Switch applicable system packages to packman 
+  community.general.zypper:
+    name: "*"
+    state: dist-upgrade
+    allow_vendor_change: true 
+    extra_args: "--from packman"
+
+- name: Distro upgrade
+  community.general.zypper:
+    name: "*"
+    state: dist-upgrade
+
+- name: Install multimedia codecs from packman 
+  ansible.builtin.shell: 
+    cmd: scripts/install-codecs.sh
+    creates: /var/lib/provision/codecs-installed
+
+- name: Install packages 
+  community.general.zypper:
+    state: present
+    name:
+      - alacritty 
+      - bc 
+      - bluez 
+      - cockpit 
+      - cockpit-machines 
+      - cockpit-podman 
+      - cockpit-system 
+      - cockpit-ws 
+      - cups 
+      - dbus-1 
+      - dbus-1-daemon 
+      - dbus-1-tools 
+      - distrobox 
+      - dunst 
+      - ffmpeg 
+      - firefox 
+      - flatpak 
+      - fontawesome-fonts 
+      - gamemode
+      - gimp
+      - gnome-boxes 
+      - gnome-keyring 
+      - google-noto-coloremoji-fonts
+      - grim 
+      - gvfs 
+      - gvfs-fuse 
+      - hledger
+      - htop 
+      - hyprland 
+      - keepassxc 
+      - libreoffice
+      - libvirt-daemon
+      - lxpolkit 
+      - man-pages 
+      - neovim 
+      - nvtop 
+      - nwg-look
+      - openssh 
+      - openssl 
+      - openvpn 
+      - papirus-icon-theme 
+      - patterns-fonts-fonts
+      - patterns-server-kvm_server
+      - patterns-server-kvm_tools
+      - pavucontrol 
+      - pipewire 
+      - playerctl 
+      - plocate 
+      - podman 
+      - podman-compose 
+      - polkit 
+      - ranger 
+      - ripgrep 
+      - river 
+      - rofi-wayland 
+      - saja-cascadia-code-fonts 
+      - simple-mtpfs 
+      - starship 
+      - steam
+      - swaybg 
+      - swayidle 
+      - swaylock 
+      - syncthing 
+      - system-config-printer 
+      - tailscale 
+      - thunar 
+      - thunar-archive-plugin 
+      - thunar-volman 
+      - thunderbird 
+      - unzip 
+      - vlc  
+      - waybar 
+      - wireplumber 
+      - wl-clipboard 
+      - wlr-randr 
+      - xdg-desktop-portal-hyprland 
+      - xdg-desktop-portal-wlr 
+      - xdg-user-dirs 
+      - xwayland 
+      - zip 
+      - zsh 
+
+- name: Add development distrobox
+  ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
+  become_user: "{{ primary_user }}"
+
+- name: Install gtk theme 
+  ansible.builtin.shell: 
+    cmd: scripts/gtk.sh
+    creates: "/home/{{ primary_user }}/.themes/gtk-installed"
+  become_user: "{{ primary_user }}"
+
+- name: Install phinger cursors 
+  ansible.builtin.shell:
+    cmd: scripts/phinger-cursors.sh
+    creates: "/home/{{ primary_user }}/.icons/phinger-installed"
+  become_user: "{{ primary_user }}"
