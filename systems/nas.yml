@@ -1,68 +1,33 @@
-- name: Add tailscale repo 
-  ansible.builtin.yum_repository:
-    name: tailscale-stable 
-    description: Tailscale stable 
-    async: true 
-    baseurl: https://pkgs.tailscale.com/stable/rhel/9/$basearch 
-    enabled: true
-    state: present 
-    gpgcheck: true 
-    repo_gpgcheck: true 
-    gpgkey: https://pkgs.tailscale.com/stable/rhel/9/repo.gpg
-
-- name: Enable EPEL 
-  ansible.builtin.dnf:
-    name: 
-      - "https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
-    disable_gpg_check: true
-
-- name: Enable RPM Fusion 
-  ansible.builtin.dnf:
-    name: 
-      - "https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
-      - "https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
-    disable_gpg_check: true
-
-- name: DNF Makecache 
-  ansible.builtin.shell: dnf makecache
-
 - name: Upgrade all packages
-  ansible.builtin.dnf:
+  community.general.zypper:
     name: "*"
-    state: latest
+    state: dist-upgrade
 
 - name: Install base packages 
-  ansible.builtin.dnf:
+  community.general.zypper:
     state: latest
     name: 
       - bc 
       - cockpit 
       - cockpit-machines 
-      - cockpit-ostree 
       - cockpit-podman 
       - cockpit-system 
       - cockpit-ws 
       - distrobox 
       - htop 
-      - libguestfs-tools 
-      - libvirt 
-      - libvirt-daemon-config-network 
-      - libvirt-daemon-kvm 
+      - libvirt-daemon
       - man-db 
       - man-pages 
       - neovim 
-      - NetworkManager       
-      - NetworkManager-tui   
-      - NetworkManager-wifi  
       - nvtop 
       - openssh 
       - openssl 
       - openvpn 
-      - perl-Image-ExifTool 
+      - exiftool
       - podman 
       - podman-compose 
-      - python3-libguestfs  
       - qemu-kvm 
+      - patterns-server-kvm_server
       - ranger 
       - ripgrep 
       - tailscale 
@@ -70,4 +35,3 @@
       - virt-manager 
       - zip  
       - zsh 
-      - zsh-autosuggestions  
