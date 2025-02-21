@@ -39,6 +39,7 @@
       - dbus-1-tools 
       - distrobox 
       - dunst 
+      - exiftool
       - ffmpeg 
       - firefox 
       - flatpak 
@@ -106,6 +107,12 @@
       - xwayland 
       - zip 
       - zsh 
+
+- name: Uninstall software 
+  community.general.zypper:
+    state: removed
+    name:
+      - foot 
 
 - name: Add development distrobox
   ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
