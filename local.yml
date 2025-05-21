@@ -14,6 +14,16 @@
       ansible.builtin.shell: command -v "{{ preferred_shell }}"
       register: shell_path
 
+    - name: Create groups for user 
+      ansible.builtin.group:
+        name: libvirt 
+        state: present
+
+    - name: Create groups for user 
+      ansible.builtin.group:
+        name: qemu 
+        state: present
+
     - name: Create primary_user with preferred_shell
       user: 
         name: "{{ primary_user }}"
