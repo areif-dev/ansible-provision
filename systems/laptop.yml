@@ -24,7 +24,7 @@
 
 - name: Install packages 
   community.general.zypper:
-    state: present
+    state: latest
     name:
       - alacritty 
       - bc 
