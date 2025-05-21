@@ -1,4 +1,18 @@
-- name: Upgrade all packages
+- name: Add packman repo
+  community.general.zypper_repository:
+    name: packman 
+    repo: "https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/"
+    state: present
+    auto_import_keys: true
+
+- name: Switch applicable system packages to packman 
+  community.general.zypper:
+    name: "*"
+    state: dist-upgrade
+    allow_vendor_change: true 
+    extra_args: "--from packman"
+
+- name: Distro upgrade
   community.general.zypper:
     name: "*"
     state: dist-upgrade
