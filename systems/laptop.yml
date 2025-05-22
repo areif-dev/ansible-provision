@@ -43,7 +43,6 @@
       - gamemode
       - gcc
       - gimp
-      - gnome-boxes 
       - gnome-keyring 
       - google-noto-coloremoji-fonts
       - grim 
@@ -110,6 +109,7 @@
     state: removed
     name:
       - foot 
+      - gnome-boxes 
 
 - name: Add development distrobox
   ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
