@@ -130,4 +130,5 @@
 - name: Install Oh My Zsh 
   ansible.builtin.shell:
     cmd: scripts/ohmyz.sh 
+    creates: "/home/{{ primary_user }}/.oh-my-zsh/ohmyzsh-installed"
   become_user: "{{ primary_user }}"

@@ -19,3 +19,5 @@ git init --quiet "$ZSH" && cd "$ZSH" \
 
 # Install zsh-autosuggestions plugin for ohmyzsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+touch $ZSH/ohmyzsh-installed
