@@ -126,3 +126,8 @@
     cmd: scripts/phinger-cursors.sh
     creates: "/home/{{ primary_user }}/.icons/phinger-installed"
   become_user: "{{ primary_user }}"
+
+- name: Install Oh My Zsh 
+  ansible.builtin.shell:
+    cmd: scripts/ohmyz.sh 
+  become_user: "{{ primary_user }}"
