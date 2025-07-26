@@ -1,5 +1,7 @@
 #!/usr/bin/env bash 
 
+set -ouex pipefail 
+
 # Install Oh My Zsh 
 ZSH=$HOME/.oh-my-zsh
 BRANCH=master 
