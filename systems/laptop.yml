@@ -77,6 +77,7 @@
       - ripgrep 
       - river 
       - rofi-wayland 
+      - rustup
       - saja-cascadia-code-fonts 
       - simple-mtpfs 
       - starship 
@@ -114,6 +115,11 @@
 
 - name: Add development distrobox
   ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
+  become_user: "{{ primary_user }}"
+
+- name: Install Rust 
+  ansible.builtin.shell: 
+    cmd: scripts/rust.sh
   become_user: "{{ primary_user }}"
 
 - name: Install gtk theme 
