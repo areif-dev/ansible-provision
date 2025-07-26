@@ -52,6 +52,7 @@
       - htop 
       - hyprland 
       - keepassxc 
+      - libopenssl-devel
       - libreoffice
       - libvirt-daemon
       - lxpolkit 
