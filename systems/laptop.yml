@@ -1,0 +1,151 @@
+- name: Enable RPM Fusion 
+  ansible.builtin.dnf:
+    name: 
+      - 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+      - 'https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+    state: latest
+
+- name: Update
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+
+- name: Install base packages 
+  ansible.builtin.dnf:
+    state: latest
+    name:
+      # System 
+      - bluez 
+      - bluez-tools 
+      - cockpit 
+      - cockpit-machines 
+      - cockpit-ostree 
+      - cockpit-podman 
+      - cockpit-system 
+      - dbus 
+      - dbus-daemon 
+      - dbus-tools 
+      - dunst 
+      - gnome-keyring 
+      - gvfs-mtp 
+      - grim 
+      - jmtpfs 
+      - lxpolkit 
+      - man-pages 
+      - openssh 
+      - openssl 
+      - papirus-icon-theme 
+      - pipewire 
+      - plocate 
+      - polkit 
+      - river 
+      - river-bsp-layout 
+      - rofi-wayland 
+      - swaybg 
+      - swayidle 
+      - swaylock 
+      - tailscale 
+      - waybar 
+      - wl-clipboard 
+      - wlr-randr 
+      - wireplumber 
+      - xdg-desktop-portal-wlr 
+      - xdg-user-dirs 
+      - xorg-x11-server-Xwayland 
+      - zsh 
+      - zsh-autosuggestions 
+
+      # Applications 
+      - alacritty 
+      - bc 
+      - distrobox 
+      - firefox 
+      - keepassxc
+      - libreoffice
+      - nvtop 
+      - openvpn 
+      - pavucontrol 
+      - playerctl 
+      - ranger 
+      - ripgrep 
+      - thunar 
+      - thunar-archive-plugin 
+      - thunar-volman 
+      - unzip 
+      - vlc  
+      - zip 
+
+      # Fonts 
+      - cascadia-code-fonts 
+      - fontawesome-fonts 
+      - google-noto-emoji-fonts  
+
+      # Virtualization 
+      - virt-install 
+      - libvirt 
+      - libvirt-daemon-config-network 
+      - libvirt-daemon-kvm 
+      - qemu-kvm 
+      - virt-manager 
+      - virt-viewer 
+      - libguestfs-tools 
+      - python3-libguestfs 
+      - virt-top 
+
+      # Development 
+      - '@Development Tools' 
+      - jq 
+      - neovim 
+      - nodejs 
+      - python 
+      - python3 
+      - python3-pip 
+      - rustup 
+      - sqlite3 
+
+      # Productivity
+      - hledger 
+      - krita 
+      - libreoffice 
+
+      # Recreation 
+      - discord 
+      - steam
+
+      # Networking 
+      - NetworkManager
+      - NetworkManager-tui
+
+- name: Uninstall software 
+  ansible.builtin.dnf:
+    state: removed
+    name:
+      - foot 
+      - gnome-boxes 
+
+- name: Add development distrobox
+  ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
+  become_user: "{{ primary_user }}"
+
+- name: Install Rust 
+  ansible.builtin.shell: 
+    cmd: scripts/rust.sh
+  become_user: "{{ primary_user }}"
+
+- name: Install gtk theme 
+  ansible.builtin.shell: 
+    cmd: scripts/gtk.sh
+    creates: "/home/{{ primary_user }}/.themes/gtk-installed"
+  become_user: "{{ primary_user }}"
+
+- name: Install phinger cursors 
+  ansible.builtin.shell:
+    cmd: scripts/phinger-cursors.sh
+    creates: "/home/{{ primary_user }}/.icons/phinger-installed"
+  become_user: "{{ primary_user }}"
+
+- name: Install Oh My Zsh 
+  ansible.builtin.shell:
+    cmd: scripts/ohmyz.sh 
+    creates: "/home/{{ primary_user }}/.oh-my-zsh/ohmyzsh-installed"
+  become_user: "{{ primary_user }}"
