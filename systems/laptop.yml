@@ -1,3 +1,17 @@
+- name: Install RPMFusion Free GPG Key
+  ansible.builtin.rpm_key:
+    state: present 
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+    fingerprint: 
+      - E9A4 91A3 DE24 7814 E7E0 67EA E06F 8ECD D651 FF2E 
+
+- name: Install RPMFusion NonFree GPG Key
+  ansible.builtin.rpm_key:
+    state: present 
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+    fingerprint: 
+      - 79BD B88F 9BBF 7391 0FD4 095B 6A2A F961 9484 3C65
+
 - name: Enable RPM Fusion 
   ansible.builtin.dnf:
     name: 
@@ -17,11 +31,6 @@
       # System 
       - bluez 
       - bluez-tools 
-      - cockpit 
-      - cockpit-machines 
-      - cockpit-ostree 
-      - cockpit-podman 
-      - cockpit-system 
       - dbus 
       - dbus-daemon 
       - dbus-tools 
@@ -29,6 +38,7 @@
       - gnome-keyring 
       - gvfs-mtp 
       - grim 
+      - hyprland
       - jmtpfs 
       - lxpolkit 
       - man-pages 
@@ -38,8 +48,6 @@
       - pipewire 
       - plocate 
       - polkit 
-      - river 
-      - river-bsp-layout 
       - rofi-wayland 
       - swaybg 
       - swayidle 
@@ -49,7 +57,7 @@
       - wl-clipboard 
       - wlr-randr 
       - wireplumber 
-      - xdg-desktop-portal-wlr 
+      - xdg-desktop-portal-hyprland
       - xdg-user-dirs 
       - xorg-x11-server-Xwayland 
       - zsh 
@@ -71,6 +79,7 @@
       - thunar 
       - thunar-archive-plugin 
       - thunar-volman 
+      - thunderbird
       - unzip 
       - vlc  
       - zip 
@@ -122,14 +131,17 @@
     name:
       - foot 
       - gnome-boxes 
+      - xdg-desktop-portal-wlr 
+      - river
 
-- name: Add development distrobox
-  ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
-  become_user: "{{ primary_user }}"
+# - name: Add development distrobox
+#   ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
+#   become_user: "{{ primary_user }}"
 
 - name: Install Rust 
   ansible.builtin.shell: 
     cmd: scripts/rust.sh
+    creates: "/home/{{ primary_user }}/.cargo/bin/cargo"
   become_user: "{{ primary_user }}"
 
 - name: Install gtk theme 

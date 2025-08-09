@@ -7,6 +7,8 @@ ZSH=$HOME/.oh-my-zsh
 BRANCH=master 
 REMOTE=https://github.com/ohmyzsh/ohmyzsh.git
 
+mkdir -p $ZSH
+
 git init --quiet "$ZSH" && cd "$ZSH" \
 && git config core.eol lf \
 && git config core.autocrlf false \

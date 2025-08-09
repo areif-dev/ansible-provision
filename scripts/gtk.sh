@@ -1,5 +1,7 @@
 #!/usr/bin/env bash 
 
+mkdir -p ~/Downloads
+
 set -ouex pipefail 
 
 cd ~/Downloads
