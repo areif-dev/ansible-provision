@@ -165,3 +165,8 @@
   ansible.builtin.shell:
     cmd: scripts/starship.sh 
     creates: "/usr/bin/starship"
+
+- name: Install NWG Look 
+  ansible.builtin.shell: 
+    cmd: scripts/nwglook.sh 
+    creates: "/usr/bin/nwg-look"
