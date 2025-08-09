@@ -28,102 +28,92 @@
   ansible.builtin.dnf:
     state: latest
     name:
-      # System 
+      - '@Development Tools' 
+      - alacritty 
+      - bc 
       - bluez 
       - bluez-tools 
+      - cups
+      - cascadia-code-fonts 
       - dbus 
       - dbus-daemon 
       - dbus-tools 
+      - discord 
+      - distrobox 
       - dunst 
+      - ffmpeg
+      - firefox 
+      - fontawesome-fonts 
+      - gamemode
+      - gimp
       - gnome-keyring 
-      - gvfs-mtp 
+      - google-noto-emoji-fonts  
       - grim 
+      - gvfs-mtp 
+      - hledger 
+      - htop
       - hyprland
       - jmtpfs 
+      - jq 
+      - keepassxc
+      - libguestfs-tools 
+      - libreoffice
+      - libvirt 
+      - libvirt-daemon-config-network 
+      - libvirt-daemon-kvm 
       - lxpolkit 
       - man-pages 
+      - neovim 
+      - nodejs 
+      - NetworkManager
+      - NetworkManager-tui
+      - nvtop 
       - openssh 
       - openssl 
       - papirus-icon-theme 
+      - pavucontrol 
       - pipewire 
+      - playerctl 
       - plocate 
+      - podman
+      - podman-compose
       - polkit 
+      - python 
+      - python3 
+      - python3-libguestfs 
+      - python3-pip 
+      - qemu-kvm 
+      - ripgrep 
       - rofi-wayland 
+      - rustup 
+      - sqlite3 
+      - steam
       - swaybg 
       - swayidle 
       - swaylock 
+      - system-config-printer
       - tailscale 
-      - waybar 
-      - wl-clipboard 
-      - wlr-randr 
-      - wireplumber 
-      - xdg-desktop-portal-hyprland
-      - xdg-user-dirs 
-      - xorg-x11-server-Xwayland 
-      - zsh 
-      - zsh-autosuggestions 
-
-      # Applications 
-      - alacritty 
-      - bc 
-      - distrobox 
-      - firefox 
-      - keepassxc
-      - libreoffice
-      - nvtop 
-      - openvpn 
-      - pavucontrol 
-      - playerctl 
-      - ranger 
-      - ripgrep 
       - thunar 
       - thunar-archive-plugin 
       - thunar-volman 
       - thunderbird
       - unzip 
-      - vlc  
-      - zip 
-
-      # Fonts 
-      - cascadia-code-fonts 
-      - fontawesome-fonts 
-      - google-noto-emoji-fonts  
-
-      # Virtualization 
+      - vinagre
       - virt-install 
-      - libvirt 
-      - libvirt-daemon-config-network 
-      - libvirt-daemon-kvm 
-      - qemu-kvm 
       - virt-manager 
-      - virt-viewer 
-      - libguestfs-tools 
-      - python3-libguestfs 
       - virt-top 
-
-      # Development 
-      - '@Development Tools' 
-      - jq 
-      - neovim 
-      - nodejs 
-      - python 
-      - python3 
-      - python3-pip 
-      - rustup 
-      - sqlite3 
-
-      # Productivity
-      - hledger 
-      - krita 
-      - libreoffice 
-
-      # Recreation 
-      - discord 
-      - steam
-
-      # Networking 
-      - NetworkManager
-      - NetworkManager-tui
+      - virt-viewer 
+      - vlc  
+      - waybar 
+      - wireplumber 
+      - wl-clipboard 
+      - wlr-randr 
+      - xdg-desktop-portal-hyprland
+      - xdg-user-dirs 
+      - xorg-x11-server-Xwayland 
+      - zip 
+      - zsh 
+      - zsh-autosuggestions 
 
 - name: Uninstall software 
   ansible.builtin.dnf:
@@ -133,6 +123,15 @@
       - gnome-boxes 
       - xdg-desktop-portal-wlr 
       - river
+      - ranger 
+      - openvpn
+      - krita 
+      - cockpit
+
+- name: Update User Dirs 
+  ansible.builtin.shell:
+    cmd: xdg-user-dirs-update 
+  become_user: "{{ primary_user }}"
 
 # - name: Add development distrobox
 #   ansible.builtin.shell: distrobox create --pull --image ghcr.io/areif-dev/distrobox-images/fedora-dev:latest --name dev
