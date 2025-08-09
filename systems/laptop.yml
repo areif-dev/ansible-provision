@@ -160,3 +160,8 @@
     cmd: scripts/ohmyz.sh 
     creates: "/home/{{ primary_user }}/.oh-my-zsh/ohmyzsh-installed"
   become_user: "{{ primary_user }}"
+
+- name: Install Starship Prompt 
+  ansible.builtin.shell:
+    cmd: scripts/starship.sh 
+    creates: "/usr/bin/starship"
