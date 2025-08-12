@@ -93,6 +93,7 @@
       - thunar-archive-plugin 
       - thunar-volman 
       - thunderbird 
+      - udev-configure-printer
       - unzip 
       - vinagre
       - vlc  
