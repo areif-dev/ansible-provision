@@ -117,7 +117,7 @@
 
 - name: Uninstall software 
   ansible.builtin.apt:
-    state: removed
+    state: absent 
     name:
       - foot 
       - gnome-boxes 
