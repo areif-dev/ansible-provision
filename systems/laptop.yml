@@ -4,18 +4,28 @@
     removes: /etc/apt/sources.list 
     creates: /etc/apt/sources.list.bak
 
-- name: Create new sources 
-  ansible.builtin.copy: 
-    dest: /etc/apt/sources.list.d/unstable.sources 
-    content: | 
-      Types: deb deb-src
-      URIs: https://ftp.debian.org/debian/
-      Suites: sid
-      Components: contrib main non-free non-free-firmware 
-      Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-    owner: root 
-    group: root 
-    mode: '0644'
+- name: Create sources for sid
+  ansible.builtin.deb822_repository: 
+    name: unstable
+    types: deb deb-src
+    uris: https://ftp.debian.org/debian/
+    suites: sid
+    components: 
+      - contrib 
+      - main 
+      - non-free 
+      - non-free-firmware 
+    signed_by: /usr/share/keyrings/debian-archive-keyring.gpg
+
+- name: Create sources for tailscale 
+  ansible.builtin.deb822_repository: 
+    name: tailscale 
+    types: deb 
+    uris: https://pkgs.tailscale.com/stable/debian
+    suites: sid 
+    components:
+      - main 
+    signed_by: https://pkgs.tailscale.com/stable/debian/sid.noarmor.gpg
 
 - name: Run apt-get update
   ansible.builtin.command: apt-get update
@@ -94,6 +104,7 @@
       - swayidle 
       - swaylock 
       - system-config-printer
+      - tailscale
       - thunar 
       - thunar-archive-plugin 
       - thunar-volman 
