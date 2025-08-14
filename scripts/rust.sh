@@ -2,5 +2,5 @@
 
 set -ouex pipefail 
 
-printf '1\n' | rustup-init
+rustup install stable 
 rustup component add rust-analyzer

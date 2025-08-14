@@ -1,34 +1,59 @@
-- name: Update
-  ansible.builtin.apt:
-    name: "*"
-    state: latest
+- name: Save old sources 
+  ansible.builtin.command:
+    cmd: mv /etc/apt/sources.list /etc/apt/source.list.bak 
+    removes: /etc/apt/sources.list 
+    creates: /etc/apt/sources.list.bak
+
+- name: Create new sources 
+  ansible.builtin.copy: 
+    dest: /etc/apt/sources.list.d/unstable.sources 
+    content: | 
+      Types: deb deb-src
+      URIs: https://ftp.debian.org/debian/
+      Suites: sid
+      Components: contrib main non-free non-free-firmware 
+      Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+    owner: root 
+    group: root 
+    mode: '0644'
+
+- name: Run apt-get update
+  ansible.builtin.command: apt-get update
+
+- name: Full upgrade if switching to Sid for the first time
+  ansible.builtin.command: 
+    cmd: apt-get -y full-upgrade
+    creates: /var/local/migration-complete
+
+- name: Mark Sid migration as complete
+  ansible.builtin.file:
+    path: /var/local/migration-complete
+    state: touch
 
 - name: Install packages 
   ansible.builtin.apt:
     state: latest
     name:
-      - '@Development Tools' 
       - alacritty 
       - bc 
       - bluez 
       - bluez-tools 
+      - build-essential
       - cups
-      - cascadia-code-fonts 
       - dbus 
       - dbus-daemon 
-      - dbus-tools 
-      - discord 
       - distrobox 
       - dunst 
       - ffmpeg
       - firefox 
-      - fontawesome-fonts 
+      - fonts-cascadia-code
+      - fonts-font-awesome
+      - fonts-noto
       - gamemode
       - gimp
       - gnome-keyring 
-      - google-noto-emoji-fonts  
       - grim 
-      - gvfs-mtp 
+      - gvfs
       - hledger 
       - htop
       - hyprland
@@ -37,17 +62,16 @@
       - keepassxc
       - libguestfs-tools 
       - libreoffice
-      - libvirt 
+      - libvirt-daemon
       - libvirt-daemon-config-network 
-      - libvirt-daemon-kvm 
       - lxpolkit 
-      - man-pages 
+      - manpages 
+      - mtp-tools
       - neovim 
       - nodejs 
-      - NetworkManager
-      - NetworkManager-tui
+      - network-manager
       - nvtop 
-      - openssh 
+      - nwg-look
       - openssl 
       - papirus-icon-theme 
       - pavucontrol 
@@ -56,28 +80,25 @@
       - plocate 
       - podman
       - podman-compose
-      - polkit 
-      - python 
       - python3 
-      - python3-libguestfs 
+      - python3-guestfs 
       - python3-pip 
       - qemu-kvm 
+      - remmina
       - ripgrep 
-      - rofi-wayland 
       - rustup 
       - sqlite3 
-      - steam
+      - ssh
+      - steam-installer
       - swaybg 
       - swayidle 
       - swaylock 
       - system-config-printer
-      - tailscale 
       - thunar 
       - thunar-archive-plugin 
       - thunar-volman 
       - thunderbird
       - unzip 
-      - vinagre
       - virt-install 
       - virt-manager 
       - virt-top 
@@ -89,7 +110,7 @@
       - wlr-randr 
       - xdg-desktop-portal-hyprland
       - xdg-user-dirs 
-      - xorg-x11-server-Xwayland 
+      - xwayland
       - zip 
       - zsh 
       - zsh-autosuggestions 
@@ -144,8 +165,3 @@
   ansible.builtin.shell:
     cmd: scripts/starship.sh 
     creates: "/usr/bin/starship"
-
-- name: Install NWG Look 
-  ansible.builtin.shell: 
-    cmd: scripts/nwglook.sh 
-    creates: "/usr/bin/nwg-look"

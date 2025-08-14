@@ -6,7 +6,7 @@
 
   tasks:
     - name: Install preferred shell
-      ansible.builtin.dnf: 
+      ansible.builtin.apt: 
         name: "{{ preferred_shell }}"
         state: latest
 
@@ -31,7 +31,7 @@
         groups: 
           - libvirt
           - qemu
-          - wheel
+          - sudo 
 
     - name: Install the nas system if requested
       include_tasks: systems/nas.yml
