@@ -7,7 +7,9 @@
 - name: Create sources for sid
   ansible.builtin.deb822_repository: 
     name: unstable
-    types: deb deb-src
+    types: 
+      - deb 
+      - deb-src
     uris: https://ftp.debian.org/debian/
     suites: sid
     components: 
@@ -23,8 +25,7 @@
     types: deb 
     uris: https://pkgs.tailscale.com/stable/debian
     suites: sid 
-    components:
-      - main 
+    components: main 
     signed_by: https://pkgs.tailscale.com/stable/debian/sid.noarmor.gpg
 
 - name: Run apt-get update
